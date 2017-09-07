@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-product-list test</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../web-component-tester/browser.js"></script>
+
+        <link rel="import" href="../kwc-product-list.html">
+    </head>
+    <body>
+        <test-fixture id="basic">
+            <template>
+                <kwc-product-list></kwc-product-list>
+            </template>
+        </test-fixture>
+
+        <test-fixture id="populated">
+            <template>
+                <kwc-product-list products="[[productArray]]"></kwc-product-list>
+            </template>
+        </test-fixture>
+
+        <script>
+            suite('kwc-product-list', function() {
+                var basic,
+                    populated,
+                    productArray = [
+                        {
+                            title: 'Computer Kit',
+                            description: 'A computer that anyone can make and learn to code with',
+                            features: [
+                                'The ultimate creative computer',
+                                'Computer Kit + Screen Kit',
+                                '100s of coding challenges',
+                                'Learn how screens work'
+                            ],
+                            linkHref: '/store/uk/computer-kit',
+                            imgSrc: 'https://static.kano.me/assets/images/product-page/kano-complete/product/kano-complete.png',
+                            ageRange: 'Ages 6+',
+                            color: 'kano-orange'
+                        },
+                        {
+                            title: 'Pixel Kit',
+                            description: 'A dazzling light board, learn to build games and apps.',
+                            linkHref: '/store/uk/pixel-kit',
+                            imgSrc: 'https://static.kano.me/assets/images/product-page/pixel-kit/product/pixel-kit-header.png',
+                            ageRange: 'Ages 6+',
+                            color: 'carnation'
+                        },
+                        {
+                            title: 'Computer Kit Bundle',
+                            description: 'The ultimate learn-to-code gift. Computer Kit + Screen Kit.',
+                            linkHref: '/store/uk/kano-complete',
+                            imgSrc: 'https://static.kano.me/assets/images/product-page/kano-complete/product/kano-complete.png',
+                            ageRange: 'Ages 6+',
+                            color: 'sky'
+                        }
+                    ];
+
+                setup(function () {
+                    basic = fixture('basic');
+                    populated = fixture('populated');
+                    populated.set('products', productArray);
+                });
+
+                test('instantiating the element works', function () {
+                    assert.equal(basic.is, 'kwc-product-list');
+                });
+
+                test('the title should be null by default', function () {
+                    assert.equal(basic.title, null);
+                });
+
+                test('the products should be an empty array by default', function () {
+                    assert.isArray(basic.products);
+                    assert.lengthOf(basic.products, 0);
+                });
+
+                test('no product cards should be in the DOM when the products are empty', function () {
+                    flush(function () {
+                        var productElements = Polymer.dom(basic.root).querySelectorAll('kwc-product-card');
+                        assert.lengthOf(productElements, 0);
+                    });
+                });
+
+                test('it should set the correct products', function (done) {
+                    assert.lengthOf(populated.products, productArray.length);
+                    assert.equal(populated.products[0], productArray[0]);
+                    flush(function () {
+                        var productElements = Polymer.dom(populated.root).querySelectorAll('kwc-product-card');
+                        assert.lengthOf(productElements, productArray.length);
+                        assert.equal(productElements[0].title, productArray[0].title);
+                        assert.equal(productElements[0].description, productArray[0].description);
+                        assert.equal(productElements[0].features, productArray[0].features);
+                        assert.equal(productElements[0].linkHref, productArray[0].linkHref);
+                        assert.equal(productElements[0].imgSrc, productArray[0].imgSrc);
+                        assert.equal(productElements[0].ageRange, productArray[0].ageRange);
+                        assert.equal(productElements[0].color, productArray[0].color);
+                        done();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

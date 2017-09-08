@@ -59,18 +59,16 @@ Custom property | Description | Default
                           </iron-media-query>
         <h2>[[title]]</h2>
         <div class="products">
-            <dom-repeat>
-                <template is="dom-repeat" items="[[products]]">
-                    <kwc-product-card title="[[item.title]]"
-                                      description="[[item.description]]"
-                                      features="[[item.features]]"
-                                      link-href="[[item.linkHref]]"
-                                      img-src="[[item.imgSrc]]"
-                                      age-range="[[item.ageRange]]"
-                                      color="[[item.color]]">
-                                      </kwc-product-card>
-                </template>
-            </dom-repeat>
+            <template is="dom-repeat" items="[[products]]">
+                <kwc-product-card title="[[item.title]]"
+                                  description="[[item.description]]"
+                                  features="[[item.features]]"
+                                  link-href="[[item.linkHref]]"
+                                  img-src="[[item.imgSrc]]"
+                                  age-range="[[item.ageRange]]"
+                                  color="[[item.color]]">
+                                  </kwc-product-card>
+            </template>
         </div>
     </template>
     <script>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>kwc-product-list demo</title>
+
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+        <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+        <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+        <link rel="import" href="../kwc-product-list.html">
+
+        <custom-style>
+            <style is="custom-style" include="demo-pages-shared-styles">
+                :root {
+                    --kwc-product-list-bg-color: #e9ebec;
+                }
+            </style>
+        </custom-style>
+    </head>
+    <body>
+        <div class="vertical-section-container">
+            <h3>Basic kwc-product-list demo</h3>
+            <demo-snippet>
+                <template is="dom-bind" id="demo">
+                    <kwc-product-list title="Product listing"
+                                      products="[[products]]">
+                                      </kwc-product-list>
+                </template>
+            </demo-snippet>
+        </div>
+        <script>
+            var products = [
+                {
+                    title: 'Computer Kit',
+                    description: 'A computer that anyone can make and learn to code with',
+                    features: [
+                        'The ultimate creative computer',
+                        'Computer Kit + Screen Kit',
+                        '100s of coding challenges',
+                        'Learn how screens work'
+                    ],
+                    linkHref: '/store/uk/computer-kit',
+                    imgSrc: 'https://static.kano.me/assets/images/product-page/kano-complete/product/kano-complete.png',
+                    ageRange: 'Ages 6+',
+                    color: 'kano-orange'
+                },
+                {
+                    title: 'Pixel Kit',
+                    features: [
+                        'Make and code dazzling lights',
+                        'Build it yourself',
+                        '35+ step-by-step challenges',
+                        'Make games and animations'
+                    ],
+                    linkHref: '/store/uk/pixel-kit',
+                    imgSrc: 'https://static.kano.me/assets/images/product-page/pixel-kit/product/pixel-kit-header.png',
+                    ageRange: 'Ages 6+',
+                    color: 'carnation'
+                },
+                {
+                    title: 'Computer Kit Bundle',
+                    description: 'The ultimate learn-to-code gift. Computer Kit + Screen Kit.',
+                    linkHref: '/store/uk/kano-complete',
+                    imgSrc: 'https://static.kano.me/assets/images/product-page/kano-complete/product/kano-complete.png',
+                    ageRange: 'Ages 6+',
+                    color: 'sky'
+                },
+                {
+                    title: 'Screen Kit',
+                    description: 'An award-winning HD scren that you build yourself.',
+                    linkHref: '/store/uk/screen-kit',
+                    imgSrc: 'https://static.kano.me/assets/images/product-page/screen-kit/product/screen-kit.png',
+                    ageRange: 'Ages 6+',
+                    color: 'grassland'
+                }
+            ];
+            document.addEventListener('WebComponentsReady', () => {
+                demo.products = products;
+            });
+        </script>
+    </body>
+</html>

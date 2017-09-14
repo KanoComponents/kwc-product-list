@@ -23,13 +23,13 @@ Custom property | Description | Default
                 background-color: var(--kwc-product-list-bg-color, white);
                 box-sizing: border-box;
                 display: block;
-                padding: 32px 24px 0 24px;
+                padding: 20px 16px;
             }
-            :host:not([_wide]) {
-                --kwc-product-card-width: 100%;
+            :host(:not([_wide])) {
+                --kwc-product-card-width: 500px;
             }
             :host([_wide]) {
-                --kwc-product-card-max-width: 240px;
+                --kwc-product-card-max-width: 272px;
             }
             :host h2 {
                 color: var(--color-black);
@@ -40,7 +40,7 @@ Custom property | Description | Default
                 text-align: center;
                 width: 100%;
             }
-            :host:not([_wide]) .products {
+            :host(:not([_wide])) .products {
                 @apply --layout-vertical;
                 @apply --layout-center;
                 @apply --layout-start-justified;
@@ -48,10 +48,19 @@ Custom property | Description | Default
             :host([_wide]) .products {
                 @apply --layout-horizontal;
                 @apply --layout-wrap;
-                @apply --layout-center-justified;
+                @apply --layout-around-justified;
+                max-width: var(--layout-width);
+                margin: auto;
             }
             :host kwc-product-card {
                 margin: 0 16px 24px 16px;
+            }
+            /**
+             * Avoiding issues with flex-layout when this is rendered in
+             * Polymer 2
+             */
+            :host dom-repeat {
+                display: none;
             }
         </style>
         <iron-media-query query="(min-width: 681px)"
